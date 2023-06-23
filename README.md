@@ -44,9 +44,9 @@ This package can be installed with Pip:
 captchaAI instance can be created like this:
 
 ```python 
-from captchaAI import captchaAI
+from captchaAI import CaptchaAI
 
-solver = captchaAI('YOUR_API_KEY')
+solver = CaptchaAI('YOUR_API_KEY')
 ```
 Also there are few options that can be configured:
 
@@ -63,7 +63,7 @@ config = {
 solver = captchaAI(**config)
 ```
 
-### captchaAI instance options
+### CaptchaAI instance options
 
 | Option           | Default value  | Description                                                                                                                                        |
 | ---------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
