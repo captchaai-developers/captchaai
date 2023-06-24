@@ -1,5 +1,21 @@
 [build-system]
-requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+[project]
+name = "captchaai"
+version = "0.0.1"
+authors = [
+  { name="captchaai developers", email="dev@captchaai.com" },
+]
+description = "A package to enable interacting with the api of captchaai.com by python."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 
-[tool.setuptools_scm]
+[project.urls]
+"Homepage" = "https://github.com/captchaai-developers/captchaai_com"
+"Bug Tracker" = "https://github.com/captchaai-developers/captchaai_com/issues"
