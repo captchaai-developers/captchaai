@@ -17,5 +17,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/captchaai-developers/captchaai_com"
-"Bug Tracker" = "https://github.com/captchaai-developers/captchaai_com/issues"
+"Homepage" = "https://github.com/captchaai-developers/captchaai"
+"Bug Tracker" = "https://github.com/captchaai-developers/captchaai/issues"
