@@ -38,7 +38,7 @@ class CaptchaAI():
                  softId=None,
                  callback=None,
                  defaultTimeout=120,
-                 recaptchaTimeout=600,
+                 recaptchaTimeout=240,
                  pollingInterval=10,
                  server='captchaai.com'):
 
@@ -80,23 +80,6 @@ class CaptchaAI():
         result = self.solve(**method, **kwargs)
         return result
 
-    def text(self, text, **kwargs):
-        '''
-        Wrapper for solving text captcha
-
-        Required:
-            text
-
-        Optional params:
-
-            lang
-            softId
-            callback
-        '''
-
-        result = self.solve(text=text, method='post', **kwargs)
-        return result
-
     def recaptcha(self, sitekey, url, version='v2', enterprise=0, **kwargs):
         '''
         Wrapper for solving recaptcha (v2, v3)
@@ -129,54 +112,6 @@ class CaptchaAI():
         result = self.solve(timeout=self.recaptcha_timeout, **params)
         return result
 
-    def funcaptcha(self, sitekey, url, **kwargs):
-        '''
-        Wrapper for solving funcaptcha
-
-        Required:
-            sitekey
-            url
-
-        Optional params:
-
-            surl
-            userAgent
-            softId
-            callback
-            proxy           =  {'type': 'HTTPS', 'uri': 'login:password@IP_address:PORT'})
-            **{'data[key]': 'anyStringValue'}
-        '''
-
-        result = self.solve(publickey=sitekey,
-                            url=url,
-                            method='funcaptcha',
-                            **kwargs)
-        return result
-
-    def geetest(self, gt, challenge, url, **kwargs):
-        '''
-        Wrapper for solving geetest captcha
-
-        Required:
-            gt
-            challenge
-            url
-
-        Optional params:
-
-            apiServer
-            softId
-            callback
-            proxy           =  {'type': 'HTTPS', 'uri': 'login:password@IP_address:PORT'})
-        '''
-
-        result = self.solve(gt=gt,
-                            challenge=challenge,
-                            url=url,
-                            method='geetest',
-                            **kwargs)
-        return result
-
     def hcaptcha(self, sitekey, url, **kwargs):
         '''
         Wrapper for solving hcaptcha
@@ -198,188 +133,6 @@ class CaptchaAI():
                             url=url,
                             method='hcaptcha',
                             **kwargs)
-        return result
-
-    def keycaptcha(self, s_s_c_user_id, s_s_c_session_id,
-                   s_s_c_web_server_sign, s_s_c_web_server_sign2, url,
-                   **kwargs):
-        '''
-        Wrapper for solving
-
-        Required:
-            s_s_c_user_id
-            s_s_c_session_id
-            s_s_c_web_server_sign
-            s_s_c_web_server_sign2
-            url
-
-        Optional params:
-
-            softId
-            callback
-            proxy           =  {'type': 'HTTPS', 'uri': 'login:password@IP_address:PORT'})
-        '''
-
-        params = {
-            's_s_c_user_id': s_s_c_user_id,
-            's_s_c_session_id': s_s_c_session_id,
-            's_s_c_web_server_sign': s_s_c_web_server_sign,
-            's_s_c_web_server_sign2': s_s_c_web_server_sign2,
-            'url': url,
-            'method': 'keycaptcha',
-            **kwargs,
-        }
-
-        result = self.solve(**params)
-        return result
-
-    def capy(self, sitekey, url, **kwargs):
-        '''
-        Wrapper for solving capy
-
-        Required:
-            sitekey
-            url
-
-        Optional params:
-
-            softId
-            callback
-            proxy           =  {'type': 'HTTPS', 'uri': 'login:password@IP_address:PORT'})
-        '''
-
-        result = self.solve(captchakey=sitekey,
-                            url=url,
-                            method='capy',
-                            **kwargs)
-        return result
-
-    def grid(self, file, **kwargs):
-        '''
-        Wrapper for solving grid captcha (image)
-
-        Required:
-            file                (image or base64)
-
-        Optional params:
-
-            rows
-            cols
-            previousId
-            canSkip
-            lang
-            hintImg
-            hintText
-            softId
-            callback
-            proxy           =  {'type': 'HTTPS', 'uri': 'login:password@IP_address:PORT'})
-        '''
-
-        method = self.get_method(file)
-
-        params = {
-            'recaptcha': 1,
-            **method,
-            **kwargs,
-        }
-
-        result = self.solve(**params)
-        return result
-
-    def canvas(self, file, **kwargs):
-        '''
-        Wrapper for solving canvas captcha (image)
-
-        Required:
-            file                (image or base64)
-
-        Optional params:
-
-            previousId
-            canSkip
-            lang
-            hintImg
-            hintText
-            softId
-            callback
-            proxy           =  {'type': 'HTTPS', 'uri': 'login:password@IP_address:PORT'})
-        '''
-
-        if not ('hintText' in kwargs or 'hintImg' in kwargs):
-            raise ValidationException(
-                'parameters required: hintText and/or hintImg')
-
-        method = self.get_method(file)
-
-        params = {
-            'recaptcha': 1,
-            'canvas': 1,
-            **method,
-            **kwargs,
-        }
-
-        result = self.solve(**params)
-        return result
-
-    def coordinates(self, file, **kwargs):
-        '''
-        Wrapper for solving coordinates captcha (image)
-
-        Required:
-            file                (image or base64)
-
-        Optional params:
-
-            hintImg
-            hintText
-            lang
-            softId
-            callback
-            proxy           =  {'type': 'HTTPS', 'uri': 'login:password@IP_address:PORT'})
-        '''
-
-        method = self.get_method(file)
-
-        params = {
-            'coordinatescaptcha': 1,
-            **method,
-            **kwargs,
-        }
-
-        result = self.solve(**params)
-        return result
-
-    def rotate(self, files, **kwargs):
-        '''
-        Wrapper for solving rotate captcha (image)
-
-        Required:
-            files               (images)
-
-        Optional params:
-
-            angle
-            lang
-            hintImg
-            hintText
-            softId
-            callback
-            proxy           =  {'type': 'HTTPS', 'uri': 'login:password@IP_address:PORT'})
-        '''
-
-        if isinstance(files, str):
-
-            file = self.get_method(files)['file']
-
-            result = self.solve(file=file, method='rotatecaptcha', **kwargs)
-            return result
-
-        elif isinstance(files, dict):
-            files = list(files.values())
-
-        files = self.extract_files(files)
-
-        result = self.solve(files=files, method='rotatecaptcha', **kwargs)
         return result
 
     def solve(self, timeout=0, polling_interval=0, **kwargs):
@@ -435,6 +188,7 @@ class CaptchaAI():
             return {'method': 'base64', 'body': file}
 
         if file.startswith('http'):
+            print('file starts with http')
             img_resp = requests.get(file)
             if img_resp.status_code != 200:
                 raise ValidationException(f'File could not be downloaded from url: {file}')
