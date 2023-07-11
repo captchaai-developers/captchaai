@@ -5,11 +5,9 @@ import sys
 import os
 from captchaai import CaptchaAI
 
-api_key = '238f195955911ee1644dbe88473f02c3'
-url = 'https://2captcha.com/demo/recaptcha-v3'
-
-
+api_key = 'your_api_key'
 solver = CaptchaAI(api_key)
+url = 'https://site/with/recaptcha/v3'
 driver = webdriver.Chrome()
 driver.get(url)
 
