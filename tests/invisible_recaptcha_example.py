@@ -5,12 +5,12 @@ import sys
 import os
 from captchaai import CaptchaAI
 
-api_key = '238f195955911ee1644dbe88473f02c3'
+api_key = 'your_api_key'
 solver = CaptchaAI(api_key)
 
 
 
-url = 'https://2captcha.com/demo/recaptcha-v2-invisible'
+url = 'https://site/with/recaptcha-v2-invisible'
 driver = webdriver.Chrome()
 driver.get(url)
 sleep(5)
