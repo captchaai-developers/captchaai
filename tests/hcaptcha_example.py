@@ -5,17 +5,17 @@ import sys
 import os
 from captchaai import CaptchaAI
 
-api_key = '238f195955911ee1644dbe88473f02c3'
+api_key = 'your_api_key'
 solver = CaptchaAI(api_key)
 
 
 
-url = 'https://2captcha.com/demo/hcaptcha'
+url = 'https://site/with/hcaptcha'
 driver = webdriver.Chrome()
 driver.get(url)
 sleep(5)
-s = driver.find_element(By.XPATH, '//iframe')
-site_key= s.get_attribute('src').split('sitekey=')[1].split('&')[0]
+s = driver.find_element(By.XPATH, '//iframe') #here use the xpath of the element that contains the site key,you can find it by opening the developer tab in the website
+site_key= s.get_attribute('src').split('sitekey=')[1].split('&')[0] #the site scraped here didn't contain the sitekey as an attribute but it was included in a url value of the src attribute that's why I splitted it this way
 print(site_key)
 
 result = solver.hcaptcha(sitekey=site_key,url=url)
