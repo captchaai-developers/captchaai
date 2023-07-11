@@ -1,8 +1,6 @@
 from selenium.webdriver.common.by import By
 from time import sleep
 from selenium import webdriver
-import sys
-import os
 from captchaai import CaptchaAI
 
 api_key = 'your_api_key'
